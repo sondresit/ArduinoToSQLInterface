@@ -159,7 +159,7 @@ namespace ArduinoSQLInterface
                 rtxtMessages.AppendText(String.Format("\r\n ", data[i]));
             }
         }
-    }
+    
 
         private void rbtnAny_CheckedChanged(object sender, EventArgs e)
         {

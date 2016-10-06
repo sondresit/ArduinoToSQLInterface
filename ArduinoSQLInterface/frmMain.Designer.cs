@@ -98,7 +98,7 @@
             // 
             // btnDeactivate
             // 
-            this.btnDeactivate.Location = new System.Drawing.Point(22, 85);
+            this.btnDeactivate.Location = new System.Drawing.Point(22, 73);
             this.btnDeactivate.Name = "btnDeactivate";
             this.btnDeactivate.Size = new System.Drawing.Size(75, 23);
             this.btnDeactivate.TabIndex = 6;
@@ -126,7 +126,7 @@
             this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.btnActivate);
             this.groupBox2.Controls.Add(this.btnDeactivate);
-            this.groupBox2.Location = new System.Drawing.Point(309, 12);
+            this.groupBox2.Location = new System.Drawing.Point(304, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(129, 193);
             this.groupBox2.TabIndex = 8;
@@ -136,7 +136,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(42, 125);
+            this.label3.Location = new System.Drawing.Point(42, 110);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 13);
             this.label3.TabIndex = 5;
@@ -144,7 +144,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(49, 143);
+            this.textBox1.Location = new System.Drawing.Point(49, 129);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(20, 20);
@@ -152,7 +152,7 @@
             // 
             // btnActivate
             // 
-            this.btnActivate.Location = new System.Drawing.Point(22, 37);
+            this.btnActivate.Location = new System.Drawing.Point(22, 25);
             this.btnActivate.Name = "btnActivate";
             this.btnActivate.Size = new System.Drawing.Size(75, 23);
             this.btnActivate.TabIndex = 5;
@@ -165,7 +165,7 @@
             this.groupBox3.Controls.Add(this.rtxtMessages);
             this.groupBox3.Location = new System.Drawing.Point(12, 211);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(426, 139);
+            this.groupBox3.Size = new System.Drawing.Size(421, 139);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Messages";
@@ -176,7 +176,7 @@
             this.rtxtMessages.Name = "rtxtMessages";
             this.rtxtMessages.ReadOnly = true;
             this.rtxtMessages.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.rtxtMessages.Size = new System.Drawing.Size(396, 105);
+            this.rtxtMessages.Size = new System.Drawing.Size(393, 105);
             this.rtxtMessages.TabIndex = 0;
             this.rtxtMessages.Text = "";
             this.rtxtMessages.TextChanged += new System.EventHandler(this.rtxtMessages_TextChanged);
