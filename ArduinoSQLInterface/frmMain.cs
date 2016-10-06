@@ -94,6 +94,7 @@ namespace ArduinoSQLInterface
         private void btnActivate_Click(object sender, EventArgs e)
         {
             rtxtMessages.AppendText("\r\n Starting listening on port ...");
+            ListenToPort();
         }
 
         private void btnDeactivate_Click(object sender, EventArgs e)
@@ -140,6 +141,13 @@ namespace ArduinoSQLInterface
             UdpClient udpClient = new UdpClient();
             IPEndPoint ep = new IPEndPoint(IPAddress.Any, port);
             byte[] data = udpClient.Receive(ref ep);
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                rtxtMessages.AppendText(String.Format("\r\n ", data[i]));
+            }
         }
+
+
     }
 }

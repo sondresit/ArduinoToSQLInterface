@@ -33,7 +33,6 @@
             this.txtCurrPort = new System.Windows.Forms.TextBox();
             this.txtChaPort = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnActivate = new System.Windows.Forms.Button();
             this.btnDeactivate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -41,9 +40,17 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.rtxtMessages = new System.Windows.Forms.RichTextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.rbtnAny = new System.Windows.Forms.RadioButton();
+            this.rbtnIP = new System.Windows.Forms.RadioButton();
+            this.txtIP = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnActivate = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -89,16 +96,6 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Change Port To:";
             // 
-            // btnActivate
-            // 
-            this.btnActivate.Location = new System.Drawing.Point(22, 37);
-            this.btnActivate.Name = "btnActivate";
-            this.btnActivate.Size = new System.Drawing.Size(75, 23);
-            this.btnActivate.TabIndex = 5;
-            this.btnActivate.Text = "Activate";
-            this.btnActivate.UseVisualStyleBackColor = true;
-            this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
-            // 
             // btnDeactivate
             // 
             this.btnDeactivate.Location = new System.Drawing.Point(22, 85);
@@ -129,7 +126,7 @@
             this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.btnActivate);
             this.groupBox2.Controls.Add(this.btnDeactivate);
-            this.groupBox2.Location = new System.Drawing.Point(158, 13);
+            this.groupBox2.Location = new System.Drawing.Point(309, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(129, 193);
             this.groupBox2.TabIndex = 8;
@@ -158,7 +155,7 @@
             this.groupBox3.Controls.Add(this.rtxtMessages);
             this.groupBox3.Location = new System.Drawing.Point(12, 211);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(275, 118);
+            this.groupBox3.Size = new System.Drawing.Size(426, 139);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Messages";
@@ -169,16 +166,88 @@
             this.rtxtMessages.Name = "rtxtMessages";
             this.rtxtMessages.ReadOnly = true;
             this.rtxtMessages.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.rtxtMessages.Size = new System.Drawing.Size(246, 92);
+            this.rtxtMessages.Size = new System.Drawing.Size(396, 105);
             this.rtxtMessages.TabIndex = 0;
             this.rtxtMessages.Text = "";
             this.rtxtMessages.TextChanged += new System.EventHandler(this.rtxtMessages_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 25);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(76, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Recieve From:";
+            // 
+            // rbtnAny
+            // 
+            this.rbtnAny.AutoSize = true;
+            this.rbtnAny.Location = new System.Drawing.Point(9, 44);
+            this.rbtnAny.Name = "rbtnAny";
+            this.rbtnAny.Size = new System.Drawing.Size(43, 17);
+            this.rbtnAny.TabIndex = 10;
+            this.rbtnAny.TabStop = true;
+            this.rbtnAny.Text = "Any";
+            this.rbtnAny.UseVisualStyleBackColor = true;
+            // 
+            // rbtnIP
+            // 
+            this.rbtnIP.AutoSize = true;
+            this.rbtnIP.Location = new System.Drawing.Point(9, 66);
+            this.rbtnIP.Name = "rbtnIP";
+            this.rbtnIP.Size = new System.Drawing.Size(35, 17);
+            this.rbtnIP.TabIndex = 11;
+            this.rbtnIP.TabStop = true;
+            this.rbtnIP.Text = "IP";
+            this.rbtnIP.UseVisualStyleBackColor = true;
+            // 
+            // txtIP
+            // 
+            this.txtIP.Location = new System.Drawing.Point(6, 89);
+            this.txtIP.Name = "txtIP";
+            this.txtIP.Size = new System.Drawing.Size(100, 20);
+            this.txtIP.TabIndex = 5;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.txtIP);
+            this.groupBox4.Controls.Add(this.rbtnAny);
+            this.groupBox4.Controls.Add(this.rbtnIP);
+            this.groupBox4.Location = new System.Drawing.Point(158, 12);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(129, 193);
+            this.groupBox4.TabIndex = 9;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Source";
+            // 
+            // btnActivate
+            // 
+            this.btnActivate.Location = new System.Drawing.Point(22, 37);
+            this.btnActivate.Name = "btnActivate";
+            this.btnActivate.Size = new System.Drawing.Size(75, 23);
+            this.btnActivate.TabIndex = 5;
+            this.btnActivate.Text = "Activate";
+            this.btnActivate.UseVisualStyleBackColor = true;
+            this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(24, 125);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Assign IP";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(303, 352);
+            this.ClientSize = new System.Drawing.Size(464, 375);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -190,6 +259,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -201,7 +272,6 @@
         private System.Windows.Forms.TextBox txtCurrPort;
         private System.Windows.Forms.TextBox txtChaPort;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnActivate;
         private System.Windows.Forms.Button btnDeactivate;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -209,6 +279,13 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RichTextBox rtxtMessages;
+        private System.Windows.Forms.Button btnActivate;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.RadioButton rbtnAny;
+        private System.Windows.Forms.RadioButton rbtnIP;
+        private System.Windows.Forms.TextBox txtIP;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button button1;
     }
 }
 
