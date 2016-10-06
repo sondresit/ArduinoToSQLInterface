@@ -38,6 +38,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnActivate = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.rtxtMessages = new System.Windows.Forms.RichTextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -45,8 +46,7 @@
             this.rbtnIP = new System.Windows.Forms.RadioButton();
             this.txtIP = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btnActivate = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnIP = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -150,6 +150,16 @@
             this.textBox1.Size = new System.Drawing.Size(20, 20);
             this.textBox1.TabIndex = 5;
             // 
+            // btnActivate
+            // 
+            this.btnActivate.Location = new System.Drawing.Point(22, 37);
+            this.btnActivate.Name = "btnActivate";
+            this.btnActivate.Size = new System.Drawing.Size(75, 23);
+            this.btnActivate.TabIndex = 5;
+            this.btnActivate.Text = "Activate";
+            this.btnActivate.UseVisualStyleBackColor = true;
+            this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.rtxtMessages);
@@ -190,6 +200,7 @@
             this.rbtnAny.TabStop = true;
             this.rbtnAny.Text = "Any";
             this.rbtnAny.UseVisualStyleBackColor = true;
+            this.rbtnAny.CheckedChanged += new System.EventHandler(this.rbtnAny_CheckedChanged);
             // 
             // rbtnIP
             // 
@@ -201,6 +212,7 @@
             this.rbtnIP.TabStop = true;
             this.rbtnIP.Text = "IP";
             this.rbtnIP.UseVisualStyleBackColor = true;
+            this.rbtnIP.CheckedChanged += new System.EventHandler(this.rbtnIP_CheckedChanged);
             // 
             // txtIP
             // 
@@ -211,7 +223,7 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.btnIP);
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.txtIP);
             this.groupBox4.Controls.Add(this.rbtnAny);
@@ -223,24 +235,15 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Source";
             // 
-            // btnActivate
+            // btnIP
             // 
-            this.btnActivate.Location = new System.Drawing.Point(22, 37);
-            this.btnActivate.Name = "btnActivate";
-            this.btnActivate.Size = new System.Drawing.Size(75, 23);
-            this.btnActivate.TabIndex = 5;
-            this.btnActivate.Text = "Activate";
-            this.btnActivate.UseVisualStyleBackColor = true;
-            this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(24, 125);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Assign IP";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnIP.Location = new System.Drawing.Point(24, 125);
+            this.btnIP.Name = "btnIP";
+            this.btnIP.Size = new System.Drawing.Size(75, 23);
+            this.btnIP.TabIndex = 5;
+            this.btnIP.Text = "Assign IP";
+            this.btnIP.UseVisualStyleBackColor = true;
+            this.btnIP.Click += new System.EventHandler(this.btnIP_Click);
             // 
             // frmMain
             // 
@@ -285,7 +288,7 @@
         private System.Windows.Forms.RadioButton rbtnIP;
         private System.Windows.Forms.TextBox txtIP;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnIP;
     }
 }
 

@@ -147,7 +147,56 @@ namespace ArduinoSQLInterface
                 rtxtMessages.AppendText(String.Format("\r\n ", data[i]));
             }
         }
+        
+        private void ListenToPort(string ip)
+        {
+            UdpClient udpClient = new UdpClient();
+            IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ip), port);
+            byte[] data = udpClient.Receive(ref ep);
 
+            for (int i = 0; i < data.Length; i++)
+            {
+                rtxtMessages.AppendText(String.Format("\r\n ", data[i]));
+            }
+        }
+    }
 
+        private void rbtnAny_CheckedChanged(object sender, EventArgs e)
+        {
+            txtIP.Enabled = false;
+        }
+
+        private void rbtnIP_CheckedChanged(object sender, EventArgs e)
+        {
+            txtIP.Enabled = true;
+        }
+
+        private void btnIP_Click(object sender, EventArgs e)
+        {
+            if (rbtnIP.Enabled == true)
+            {
+                ValidateIPv4(txtIP.Text);
+            }
+        }
+
+        public void ValidateIPv4(string ipString)
+        {
+            if (ipString.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries).Length == 4)
+            {
+                IPAddress ipAddr;
+                if (IPAddress.TryParse(ipString, out ipAddr))
+                {
+                    MessageBox.Show("IP set to " + ipAddr.ToString());
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Not an IP");
+            }
+        }
     }
 }
