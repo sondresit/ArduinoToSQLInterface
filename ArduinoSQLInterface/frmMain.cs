@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Net.Sockets;
+using System.Net;
 
 
 namespace ArduinoSQLInterface
@@ -18,7 +19,7 @@ namespace ArduinoSQLInterface
 
         private string optionsTxtFile = ""; //Name of the options.txt file.
         private string[] optionsArray;
-        private int output = 1;
+        private int port = 1;
 
         public frmMain()
         {
@@ -65,20 +66,20 @@ namespace ArduinoSQLInterface
 
         private void btnAssign_Click(object sender, EventArgs e)
         {
-            string port = txtChaPort.Text;
+            string input = txtChaPort.Text;
 
 
             //Check if input is within 65535
             
-            Int32.TryParse(port, out output);
-            if (output >= 1 && output<= 65535)
+            Int32.TryParse(input, out port);
+            if (port >= 1 && port <= 65535)
             {
                 string message = "";
                 message = "\r\n Port {0} assigned.";
-                rtxtMessages.AppendText(String.Format(message, output));
-                txtCurrPort.Text = Convert.ToString(output);
+                rtxtMessages.AppendText(String.Format(message, port));
+                txtCurrPort.Text = Convert.ToString(port);
 
-                optionsArray[2] = Convert.ToString(output);
+                optionsArray[2] = Convert.ToString(port);
                 WriteToFile();
             }
             else
@@ -123,7 +124,7 @@ namespace ArduinoSQLInterface
         private void WriteToFile()
         {
             optionsArray[0] = "1";
-            optionsArray[1] = Convert.ToString(output);
+            optionsArray[1] = Convert.ToString(port);
 
             // File.WriteAllLines(optionsFile, options);
             using (StreamWriter file = new StreamWriter(optionsTxtFile))
@@ -133,6 +134,12 @@ namespace ArduinoSQLInterface
                     file.WriteLine(line);
                 }
             }
+        }
+        private void ListenToPort()
+        {
+            UdpClient udpClient = new UdpClient();
+            IPEndPoint ep = new IPEndPoint(IPAddress.Any, port);
+            byte[] data = udpClient.Receive(ref ep);
         }
     }
 }

@@ -139,15 +139,15 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 125);
+            this.label3.Location = new System.Drawing.Point(42, 125);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 13);
+            this.label3.Size = new System.Drawing.Size(37, 13);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Connection Status";
+            this.label3.Text = "Status";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(49, 141);
+            this.textBox1.Location = new System.Drawing.Point(49, 143);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(20, 20);
