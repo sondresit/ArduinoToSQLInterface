@@ -115,26 +115,26 @@ namespace ArduinoSQLInterface
 
         private void ReadFromFile()
         {
-            if (File.Exists(optionsTxtFile))
+            if (File.Exists(optionsTxtFile)) //Checks if the options file actually excists.
             {
-                optionsArray = File.ReadAllLines(optionsTxtFile);
+                optionsArray = File.ReadAllLines(optionsTxtFile); //Read all lines of the file to the array.
 
             }
         }
 
         private void WriteToFile()
         {
-            optionsArray[0] = "1";
-            optionsArray[1] = Convert.ToString(port);
-            optionsArray[2] = udpIP;
-            optionsArray[3] = Convert.ToString(anySelected);
+            optionsArray[0] = "1"; // If "1" the options.txt file is initialized.
+            optionsArray[1] = Convert.ToString(port); //The port which the user has selected
+            optionsArray[2] = udpIP; //The IP which the user wants to listen to for traffic
+            optionsArray[3] = Convert.ToString(anySelected); //If "true" then recieve traffic from any IP
 
             // File.WriteAllLines(optionsFile, options);
-            using (StreamWriter file = new StreamWriter(optionsTxtFile))
+            using (StreamWriter file = new StreamWriter(optionsTxtFile)) //Open the options file
             {
-                foreach (string line in optionsArray)
+                foreach (string line in optionsArray) //write every line into the file
                 {
-                    file.WriteLine(line);
+                    file.WriteLine(line); 
                 }
             }
         }
@@ -178,14 +178,18 @@ namespace ArduinoSQLInterface
 
         private void btnIP_Click(object sender, EventArgs e)
         {
-            if (rbtnIP.Enabled == true)
-            {
-                ValidateIPv4(txtIP.Text);
+            
+            if (rbtnIP.Enabled == true) //check that a spesified IP is to be assigned
+            { 
+                if (ValidateIPv4(txtIP.Text) == true) //Check that the IP is in a valid format
+                {
+                    rtxtMessages.AppendText("IP set to " + udpIP + "\r\n");
+                    WriteToFile();
+                }
             }
-
         }
 
-        private void ValidateIPv4(string ipString)
+        private bool ValidateIPv4(string ipString)
         {
             
             if (ipString.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries).Length == 4)
@@ -193,15 +197,16 @@ namespace ArduinoSQLInterface
                 IPAddress ipAddr;
                 if (IPAddress.TryParse(ipString, out ipAddr))
                 {
-                    rtxtMessages.AppendText("IP set to " + ipAddr.ToString() + "\r\n");
                     udpIP = ipString;
-                    WriteToFile();
+                    return true;
                 }
             }
             else
             {
                 MessageBox.Show("Not an IP");
+                return false;
             }
+            return false;
 
         }
 
