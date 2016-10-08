@@ -64,20 +64,27 @@ namespace ArduinoSQLInterface
 
         private void btnAssign_Click(object sender, EventArgs e)                // THIS IS THE BUTTON FOR THE PORT SELECTION! NOT THE GOD DAMN IP!!!
         {
-                string input = txtChaPort.Text;                                 //The port number from the GUI
-
-                Int32.TryParse(input, out port);                                //Check that input is an integer
-                if (port >= 1 && port <= 65535)                                 //Check that input is within 65535
-                {
-                    string message = "";                                        //Init message to user
-                    message = "Port {0} assigned.\r\n";                         //Message to user
-                    rtxtMessages.AppendText(String.Format(message, port));      //Message to user which port is configured
-                }
-                else
-                {
-                    MessageBox.Show("Value can only be between 1 and 65535");   // Message to user if any error in the input occurs
-                }
-            
+            string portNumber;
+            portNumber = txtChaPort.Text;
+            if (CheckPortNumber(portNumber) == true)
+            {
+                string message = "";                                            //Init message to user
+                message = "Port {0} assigned.\r\n";                             //Message to user
+                rtxtMessages.AppendText(String.Format(message, port));          //Message to user which port is configured
+            }
+        }
+        private bool CheckPortNumber(string input)
+        {
+            Int32.TryParse(input, out port);                                    //Check that input is an integer
+            if (port >= 1 && port <= 65535)                                     //Check that input is within 65535
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Value can only be between 1 and 65535");       // Message to user if any error in the input occurs
+                return false;
+            }
         }
 
 
@@ -115,7 +122,7 @@ namespace ArduinoSQLInterface
 
         private void WriteToFile()
         {
-            optionsArray[0] = "1";                                              // If "1" the options.txt file is initialized.
+            optionsArray[0] = "1";                                              //If "1" the options.txt file is initialized.
             optionsArray[1] = Convert.ToString(port);                           //The port which the user has selected
             optionsArray[2] = udpIP;                                            //The IP which the user wants to listen to for traffic
             optionsArray[3] = Convert.ToString(anySelected);                    //If "true" then recieve traffic from any IP
@@ -168,7 +175,6 @@ namespace ArduinoSQLInterface
 
         private void btnIP_Click(object sender, EventArgs e)                    //THIS IS THE BUTTON FOR THE ASSIGN IP!!!
         {
-            
             if (rbtnIP.Enabled == true)                                         //check that a spesified IP is to be assigned
             { 
                 if (ValidateIPv4(txtIP.Text) == true)                           //Check that the IP is in a valid format
