@@ -47,6 +47,7 @@
             this.txtIP = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnIP = new System.Windows.Forms.Button();
+            this.lblPath = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -245,11 +246,21 @@
             this.btnIP.UseVisualStyleBackColor = true;
             this.btnIP.Click += new System.EventHandler(this.btnIP_Click);
             // 
+            // lblPath
+            // 
+            this.lblPath.AutoSize = true;
+            this.lblPath.Location = new System.Drawing.Point(22, 353);
+            this.lblPath.Name = "lblPath";
+            this.lblPath.Size = new System.Drawing.Size(29, 13);
+            this.lblPath.TabIndex = 7;
+            this.lblPath.Text = "Path";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 375);
+            this.Controls.Add(this.lblPath);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -265,6 +276,7 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -289,6 +301,7 @@
         private System.Windows.Forms.TextBox txtIP;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btnIP;
+        private System.Windows.Forms.Label lblPath;
     }
 }
 
