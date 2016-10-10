@@ -47,11 +47,13 @@
             this.txtIP = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnIP = new System.Windows.Forms.Button();
-            this.lblPath = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -114,7 +116,7 @@
             this.groupBox1.Controls.Add(this.btnAssign);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtChaPort);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 30);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(129, 193);
             this.groupBox1.TabIndex = 7;
@@ -127,7 +129,7 @@
             this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.btnActivate);
             this.groupBox2.Controls.Add(this.btnDeactivate);
-            this.groupBox2.Location = new System.Drawing.Point(304, 12);
+            this.groupBox2.Location = new System.Drawing.Point(304, 30);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(129, 193);
             this.groupBox2.TabIndex = 8;
@@ -164,7 +166,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.rtxtMessages);
-            this.groupBox3.Location = new System.Drawing.Point(12, 211);
+            this.groupBox3.Location = new System.Drawing.Point(12, 229);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(421, 139);
             this.groupBox3.TabIndex = 9;
@@ -229,7 +231,7 @@
             this.groupBox4.Controls.Add(this.txtIP);
             this.groupBox4.Controls.Add(this.rbtnAny);
             this.groupBox4.Controls.Add(this.rbtnIP);
-            this.groupBox4.Location = new System.Drawing.Point(158, 12);
+            this.groupBox4.Location = new System.Drawing.Point(158, 30);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(129, 193);
             this.groupBox4.TabIndex = 9;
@@ -246,25 +248,34 @@
             this.btnIP.UseVisualStyleBackColor = true;
             this.btnIP.Click += new System.EventHandler(this.btnIP_Click);
             // 
-            // lblPath
+            // menuStrip1
             // 
-            this.lblPath.AutoSize = true;
-            this.lblPath.Location = new System.Drawing.Point(22, 353);
-            this.lblPath.Name = "lblPath";
-            this.lblPath.Size = new System.Drawing.Size(29, 13);
-            this.lblPath.TabIndex = 7;
-            this.lblPath.Text = "Path";
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(464, 24);
+            this.menuStrip1.TabIndex = 10;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 375);
-            this.Controls.Add(this.lblPath);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmMain";
             this.Text = "Arduino To SQL Interface";
             this.Load += new System.EventHandler(this.frmMain_Load);
@@ -275,6 +286,8 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,7 +314,8 @@
         private System.Windows.Forms.TextBox txtIP;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btnIP;
-        private System.Windows.Forms.Label lblPath;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 

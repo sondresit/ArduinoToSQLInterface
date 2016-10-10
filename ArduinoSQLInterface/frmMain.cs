@@ -34,6 +34,15 @@ namespace ArduinoSQLInterface
         private void frmMain_Load(object sender, EventArgs e)
         {
             InitializeGUI();
+         
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosedEventArgs e)
+        {
+            if (string.Equals((sender as Button).Name, @"CloseButton"))
+            {
+                
+            }
         }
 
         private void btnAssign_Click(object sender, EventArgs e)                // THIS IS THE BUTTON FOR THE PORT SELECTION! NOT THE GOD DAMN IP!!!
@@ -89,7 +98,7 @@ namespace ArduinoSQLInterface
 
         private void rtxtMessages_TextChanged(object sender, EventArgs e)
         {
-            //rtxtMessages.SelectionStart = rtxtMessages.Text.Length;
+            rtxtMessages.SelectionStart = rtxtMessages.Text.Length;
             rtxtMessages.ScrollToCaret();                                       //Makes sure that the box continues to scroll downward as text is displayed
         }
 
@@ -104,9 +113,9 @@ namespace ArduinoSQLInterface
         {
 
             UdpClient udpClient = new UdpClient(portNumber);
+            IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
             while (listeningActive == true)
             {
-                IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
                 byte[] receiveBytes = udpClient.Receive(ref RemoteIpEndPoint);
                 string returnData = Encoding.ASCII.GetString(receiveBytes);
                 AppendTextBox(RemoteIpEndPoint.Address.ToString()
@@ -117,16 +126,17 @@ namespace ArduinoSQLInterface
 
         private void ListenToPort(string ip, int portNumber)                                    //Listen to port, spesific IP.
         {
-            UdpClient udpClient = new UdpClient(portNumber);
+            UdpClient udpClientip = new UdpClient(portNumber);
+            IPEndPoint RemoteIpEndPointip = new IPEndPoint(IPAddress.Parse(ip), 0);
             while (listeningActive == true)
             {
-                IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Parse(ip), 0);
-                byte[] receiveBytes = udpClient.Receive(ref RemoteIpEndPoint);
+                byte[] receiveBytes = udpClientip.Receive(ref RemoteIpEndPointip);
                 string returnData = Encoding.ASCII.GetString(receiveBytes);
-                AppendTextBox(RemoteIpEndPoint.Address.ToString()
+                AppendTextBox(RemoteIpEndPointip.Address.ToString()
                                         + ":" + returnData.ToString());
                 //Does this one actually stop when thdUDP.Abort() is called?
             }
+            
         }
 
         private void rbtnAny_CheckedChanged(object sender, EventArgs e)
@@ -195,6 +205,11 @@ namespace ArduinoSQLInterface
                 return;
             }
             rtxtMessages.Text += value + "\r\n";
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
         }
     }
 }
