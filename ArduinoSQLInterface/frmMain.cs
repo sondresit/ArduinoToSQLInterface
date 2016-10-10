@@ -18,24 +18,22 @@ namespace ArduinoSQLInterface
     public partial class frmMain : Form
     {
 
-        private string optionsTxtFile;                                          //Name of the options.txt file.
-        private string[] optionsArray;                                          //The array to a configuration
         private int port;                                                       //Spesific Port
         private string udpIP;                                                   //Spesific IP
-        private bool anySelected;                                               //if true, recieve data from any IP
-        private bool listen;
+        private bool anySelected;
+        private bool listeningActive = false;
         Thread thdUDPServer;
 
         public frmMain()
         {
             InitializeComponent();
-            optionsArray = new string[5] { "", "", "", "", "" };                //Initialze the array.
+            
             
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-
+            InitializeGUI();
         }
 
         private void btnAssign_Click(object sender, EventArgs e)                // THIS IS THE BUTTON FOR THE PORT SELECTION! NOT THE GOD DAMN IP!!!
@@ -60,14 +58,14 @@ namespace ArduinoSQLInterface
         private void btnActivate_Click(object sender, EventArgs e)
         {
             rtxtMessages.AppendText("Initializing port listening...\r\n");       //Dunno how long this will take, so message the user that work is in progress first.
+            listeningActive = true;
             if (rbtnAny.Checked)
             {
+                
                 thdUDPServer = new Thread(() => ListenToPort(port));
                 thdUDPServer.Start();                                             //Start configuration of port-listening
                 DeactivateButtons();
                 rtxtMessages.AppendText("Listening commenced...\r\n");
-
-
             }
             if (rbtnIP.Checked)
             {
@@ -81,7 +79,8 @@ namespace ArduinoSQLInterface
 
         private void btnDeactivate_Click(object sender, EventArgs e)
         {
-            rtxtMessages.AppendText("Aboirting port listening...\r\n");      //Dunno how long this will take, so message the user that work is in progress first.
+            listeningActive = false;
+            rtxtMessages.AppendText("Aborting port listening...\r\n");      //Dunno how long this will take, so message the user that work is in progress first.
             ActivateButtons();
             thdUDPServer.Abort();
             rtxtMessages.AppendText("Port listening aborted...\r\n");
@@ -105,28 +104,28 @@ namespace ArduinoSQLInterface
         {
 
             UdpClient udpClient = new UdpClient(portNumber);
-            while (true)
+            while (listeningActive == true)
             {
                 IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
                 byte[] receiveBytes = udpClient.Receive(ref RemoteIpEndPoint);
                 string returnData = Encoding.ASCII.GetString(receiveBytes);
-                rtxtMessages.AppendText(RemoteIpEndPoint.Address.ToString()
+                AppendTextBox(RemoteIpEndPoint.Address.ToString()
                                         + ":" + returnData.ToString());
-                //Does this one actually stopp when thdUDP.Abort() is called?
+                //Does this one actually stop when thdUDP.Abort() is called?
             }
         }
 
         private void ListenToPort(string ip, int portNumber)                                    //Listen to port, spesific IP.
         {
             UdpClient udpClient = new UdpClient(portNumber);
-            while (true)
+            while (listeningActive == true)
             {
                 IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Parse(ip), 0);
                 byte[] receiveBytes = udpClient.Receive(ref RemoteIpEndPoint);
                 string returnData = Encoding.ASCII.GetString(receiveBytes);
-                rtxtMessages.AppendText(RemoteIpEndPoint.Address.ToString()
+                AppendTextBox(RemoteIpEndPoint.Address.ToString()
                                         + ":" + returnData.ToString());
-                //Does this one actually stopp when thdUDP.Abort() is called?
+                //Does this one actually stop when thdUDP.Abort() is called?
             }
         }
 
@@ -168,17 +167,11 @@ namespace ArduinoSQLInterface
 
         private void InitializeGUI()
         {
-            txtCurrPort.Text = Convert.ToString(port);
-            txtIP.Text = udpIP;
-            lblPath.Text = "Settings are stored in: " + optionsTxtFile;
-            if (anySelected == true)
-            {
-                rbtnAny.Checked = true;
-            }
-            else
-            {
-                rbtnIP.Checked = true;
-            }
+            txtCurrPort.Text = Convert.ToString(3306);
+            txtIP.Text = "192.168.12.29";
+            udpIP = "192.168.12.29";
+            port = 3306;
+            rbtnAny.Checked = true;
         }
 
         private void ActivateButtons()
@@ -192,6 +185,16 @@ namespace ArduinoSQLInterface
             btnActivate.Enabled = false;
             btnAssign.Enabled = false;
             btnIP.Enabled = false;
+        }
+
+        private void AppendTextBox(string value)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<string>(AppendTextBox), new object[] { value });
+                return;
+            }
+            rtxtMessages.Text += value + "\r\n";
         }
     }
 }
