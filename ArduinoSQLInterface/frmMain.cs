@@ -64,6 +64,7 @@ namespace ArduinoSQLInterface
             }
         }
 
+        //s
         private void btnActivate_Click(object sender, EventArgs e)
         {
             rtxtMessages.AppendText("Initializing port listening...\r\n");       //Dunno how long this will take, so message the user that work is in progress first.
