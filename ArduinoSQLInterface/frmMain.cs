@@ -210,7 +210,7 @@ namespace ArduinoSQLInterface
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Application.Exit();
+            Application.Exit();
         }
     }
 }
