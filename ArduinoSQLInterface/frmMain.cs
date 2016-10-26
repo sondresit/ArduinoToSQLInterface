@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,6 +23,9 @@ namespace ArduinoSQLInterface
         private bool anySelected;
         private bool listeningActive = false;
         Thread thdUDPServer;
+        byte[] receiveBytes;
+
+        ERP.DbConnect db = new ERP.DbConnect();
 
         public frmMain()
         {
@@ -117,24 +120,29 @@ namespace ArduinoSQLInterface
             IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
             while (listeningActive == true)
             {
-                byte[] receiveBytes = udpClient.Receive(ref RemoteIpEndPoint);
-                string returnData = Encoding.ASCII.GetString(receiveBytes);
-                AppendTextBox(RemoteIpEndPoint.Address.ToString()
-                                        + ":" + returnData.ToString());
+                receiveBytes = udpClient.Receive(ref RemoteIpEndPoint);
+                db.ArduinoDataToDb(receiveBytes);                                    //Passing data from arduino to DB
+                foreach (byte val in receiveBytes)
+                {
+                    AppendTextBox(RemoteIpEndPoint.Address.ToString() + val.ToString());
+                }
                 //Does this one actually stop when thdUDP.Abort() is called?
             }
         }
 
         private void ListenToPort(string ip, int portNumber)                                    //Listen to port, spesific IP.
         {
+
             UdpClient udpClientip = new UdpClient(portNumber);
             IPEndPoint RemoteIpEndPointip = new IPEndPoint(IPAddress.Parse(ip), 0);
             while (listeningActive == true)
             {
-                byte[] receiveBytes = udpClientip.Receive(ref RemoteIpEndPointip);
-                string returnData = Encoding.ASCII.GetString(receiveBytes);
-                AppendTextBox(RemoteIpEndPointip.Address.ToString()
-                                        + ":" + returnData.ToString());
+                receiveBytes = udpClientip.Receive(ref RemoteIpEndPointip);
+                db.ArduinoDataToDb(receiveBytes);                                    //Passing data from arduino to DB
+                foreach (byte val in receiveBytes)
+                {
+                    AppendTextBox(RemoteIpEndPointip.Address.ToString() + val.ToString());
+                }
                 //Does this one actually stop when thdUDP.Abort() is called?
             }
             
@@ -214,3 +222,4 @@ namespace ArduinoSQLInterface
         }
     }
 }
+
