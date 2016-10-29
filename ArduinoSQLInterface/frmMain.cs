@@ -126,7 +126,8 @@ namespace ArduinoSQLInterface
                 {
                     AppendTextBox(RemoteIpEndPoint.Address.ToString() + val.ToString());
                 }
-                //Does this one actually stop when thdUDP.Abort() is called?
+                //Does this one actually stop when thdUDP.Abort() is called
+                //No. need to declare the instance as a global instance to be able to call it. that or a metho
             }
         }
 
@@ -181,6 +182,7 @@ namespace ArduinoSQLInterface
             if (rbtnAny.Checked == true)
             {
                 anySelected = true;
+                rtxtMessages.AppendText("Listening to any IP... \r\n ");
             }
         }
 

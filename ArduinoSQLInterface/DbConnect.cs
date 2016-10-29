@@ -85,36 +85,11 @@ namespace ERP
             return true;
         }
 
-
-        public void CreateBatchOrder(int numberOfCups)
+        public void InsertDataIntoDB(int cupID, int measuredWeight, bool approved)
         {
             try
             {
-                string query = "INSERT INTO BatchOrdre(NumberOfCups)VALUES(@numberOfCups); SELECT SCOPE_IDENTITY();";
-                if (OpenConnection())
-                {
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@numberOfCups", numberOfCups);
-                        batchid = cmd.ExecuteScalar().ToString();
-                        CloseConnection();
-                    }
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        public void InsertOrderIntoDataTable(int numOfCups, int typeOfCup, int fillLevel)
-        {
-            try
-            {
-                for (int i = 0; i < numOfCups; i++)
-                {
-                    string query = "INSERT INTO CupOrdre(TypeOfCup, OrderedWeight, BatchID)VALUES(@typeOfCup, @orderedWeight, @batchID);";
+                    string query = "UPDATE ActualWeight, INTO CupOrdre(TypeOfCup, OrderedWeight, BatchID)VALUES(@typeOfCup, @orderedWeight, @batchID);";
                     if (OpenConnection())
                     {
                         using (SqlCommand cmd = new SqlCommand(query, connection))
@@ -127,8 +102,7 @@ namespace ERP
                         }
                     }
 
-                }
-
+                
             }
             catch (Exception)
             {
@@ -136,26 +110,7 @@ namespace ERP
                 throw;
             }
         }
-        public void GetBatchOrder()
-        {
-            try
-            {
-                string query = "SELECT * FROM BatchOrdre WHERE BatchID = @batchID";
-                if (OpenConnection())
-                {
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@batchID", batchid);
-                        dt.Load(cmd.ExecuteReader());
-                        CloseConnection();
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-        }
+    
     }
 }
 
