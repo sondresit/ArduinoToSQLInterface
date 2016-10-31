@@ -85,31 +85,7 @@ namespace ERP
             return true;
         }
 
-        public void InsertDataIntoDB(int cupID, int measuredWeight, bool approved)
-        {
-            try
-            {
-                    string query = "UPDATE ActualWeight, INTO CupOrdre(TypeOfCup, OrderedWeight, BatchID)VALUES(@typeOfCup, @orderedWeight, @batchID);";
-                    if (OpenConnection())
-                    {
-                        using (SqlCommand cmd = new SqlCommand(query, connection))
-                        {
-                            cmd.Parameters.AddWithValue("@typeOfCup", typeOfCup);
-                            cmd.Parameters.AddWithValue("@orderedWeight", fillLevel);
-                            cmd.Parameters.AddWithValue("@batchID", batchid);
-                            cmd.ExecuteNonQuery();
-                            CloseConnection();
-                        }
-                    }
 
-                
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
         
         public void ArduinoDataToDb(byte[] data)
         {
