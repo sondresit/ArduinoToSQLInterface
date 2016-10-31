@@ -110,6 +110,31 @@ namespace ERP
                 throw;
             }
         }
+        
+        public void ArduinoDataToDb(byte[] data)
+        {
+            
+            try
+            {
+                string query = "UPDATE CupOrdre SET ActualWeight = @ActualWeight, CompletedApproved = @CompletedApproved, CompletedDiscard = @CompletedDiscard WHERE CupID = @CupID";
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        OpenConnection();
+                        cmd.Parameters.AddWithValue("@CupID", Convert.ToInt32(data[0]));
+                        cmd.Parameters.AddWithValue("@ActualWeight",  Convert.ToDouble(data[1]));
+                        cmd.Parameters.AddWithValue("@CompletedApproved", data[2]);
+                        cmd.Parameters.AddWithValue("@CompletedDiscard", data[3]);
+                        cmd.ExecuteNonQuery();
+                        CloseConnection();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
     
     }
 }
