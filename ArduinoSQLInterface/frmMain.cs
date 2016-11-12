@@ -129,7 +129,7 @@ namespace ArduinoSQLInterface
                 Invoke(new Action<string>(AppendTextBox), new object[] { value });
                 return;
             }
-            rtxtMessages.Text += value + "\r\n";
+            rtxtMessages.Text += ":  " + value + "\r\n";
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
