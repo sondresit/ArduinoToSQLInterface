@@ -46,7 +46,7 @@ namespace ArduinoSQLInterface
         {
             if (string.Equals((sender as Button).Name, @"CloseButton"))
             {
-                
+                udpClient.Close();
             }
         }
 
