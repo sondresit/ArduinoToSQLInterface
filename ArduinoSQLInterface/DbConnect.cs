@@ -14,7 +14,6 @@ namespace ERP
     public class DbConnect
     {
         private SqlConnection connection;
-        public DataTable dt = new DataTable();
         public string batchid = "";
         public string conString = "";
 
@@ -25,9 +24,6 @@ namespace ERP
             //Initialze connection with connectionString
             conString = "Data Source = 192.168.2.15\\SQLEXPRESS; Initial Catalog = IA5-5-16; User ID = sa; Password = " + "netlab_1";
             connection = new SqlConnection(conString);
-            dt.Columns.Add("TypeOfCup", typeof(int));
-            dt.Columns.Add("OrderedWeight", typeof(int));
-            dt.Columns.Add("BatchID", typeof(int));
         }
         public bool PingHost()
         {
